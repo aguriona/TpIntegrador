@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Practica</string>
+    <string name="codigo">Codigo</string>
+    <string name="alquileres">Alquileres</string>
+    <string name="nombre">Nombre</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="razon_social">Razon Social</string>
+</resources>
