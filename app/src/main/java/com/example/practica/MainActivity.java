@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner tipo;
     BaseDatos basedatos;
 
-
+//aaaa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
