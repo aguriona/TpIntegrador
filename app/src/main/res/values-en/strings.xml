@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Practica</string>
+    <string name="codigo">Code</string>
+    <string name="alquileres">Rentals</string>
+    <string name="nombre">Name</string>
+    <string name="CantidadP">Number of people</string>
+    <string name="descripcion">Description</string>
+    <string name="Precio">Price</string>
+    <string name="Coordenadas">Coordinates</string>
+    <string name="latitud">Latitude</string>
+    <string name="longitud">Length</string>
+    <string name="aceptar">Agree</string>
+    <string name="razon_social">Razon Social</string>
+    <string name="internet_Gratuito">Free Internet</string>
+    <string name="Si">Yes</string>
+    <string name="Alquilada">Rented</string>
+    <string name="Guardar">Save</string>
+    <string name="Tipo">Type</string>
+</resources>

@@ -1,68 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/alquileres" />
-
-    <EditText
-        android:id="@+id/txtcodigo"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/codigo"
-        android:inputType="textPersonName"
-        android:importantForAutofill="no" />
-
-    <EditText
-        android:id="@+id/txtnombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/nombre"
-        android:inputType="textPersonName"
-        android:autofillHints="" />
-
-    <EditText
-        android:id="@+id/txtdescripcion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/descripcion"
-        android:maxLines="2"
-        android:autofillHints="" />
-
-    <EditText
-        android:id="@+id/txtprecio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Precio"
-        android:inputType="numberSigned" />
+        android:layout_height="@dimen/logo"
+        app:srcCompat="@drawable/casa_logo" />
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Internet Gratuito" />
+        android:autoText="false"
+        android:background="#CDDC39"
+        android:text="@string/alquileres"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/txtnombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/nombre"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editTextNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/CantidadP"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/txtdescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/descripcion"
+            android:inputType="textMultiLine|text"
+            android:maxLines="2" />
+
+        <EditText
+            android:id="@+id/txtprecio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/Precio"
+            android:inputType="numberSigned" />
+
+        <EditText
+            android:id="@+id/txtcodigo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/codigo"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/internet_Gratuito" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/radioButton8"
             android:layout_width="86dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Si" />
+            android:text="@string/Si" />
 
         <RadioButton
             android:id="@+id/radioButton9"
@@ -70,25 +100,28 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="No" />
+        </LinearLayout>
+
+
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Cantidad de Personas"
-        android:inputType="number" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Coordenadas" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="59dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Coordenadas" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <EditText
@@ -97,7 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Latitud"
+            android:hint="@string/latitud"
             android:inputType="numberDecimal" />
 
         <EditText
@@ -106,44 +139,49 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Longitud"
+            android:hint="@string/longitud"
             android:inputType="numberDecimal" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Alquilada" />
+        android:text="@string/Alquilada" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tipo" />
-
-    <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:text="@string/Tipo" />
 
-        <Spinner
+    <Spinner
             android:id="@+id/spinTipo"
             android:layout_width="match_parent"
-            android:layout_height="34dp" />
+            android:layout_height="wrap_content"
+
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
         <Button
             android:id="@+id/btnguardar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Guardar" />
-        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="214dp"
-            android:layout_gravity="bottom"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorBoton"
+            android:text="@string/Guardar"
+             />
 
-
-        </LinearLayout>
-
-    </com.google.android.material.navigation.NavigationView>
+    </LinearLayout>
 
 </LinearLayout>

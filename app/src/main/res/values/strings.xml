@@ -3,7 +3,17 @@
     <string name="codigo">Codigo</string>
     <string name="alquileres">Alquileres</string>
     <string name="nombre">Nombre</string>
+    <string name="CantidadP">Cantidad de personas</string>
     <string name="descripcion">Descripcion</string>
+    <string name="Precio">Precio</string>
+    <string name="Coordenadas">Coordenadas</string>
+    <string name="latitud">Latitud</string>
+    <string name="longitud">Longitud</string>
     <string name="aceptar">Aceptar</string>
-    <string name="razon_social">Razon Social</string>
+
+    <string name="internet_Gratuito">Internet Gratuito</string>
+    <string name="Si">Si</string>
+    <string name="Alquilada">Alquilada</string>
+    <string name="Guardar">Guardar</string>
+    <string name="Tipo">Tipo</string>
 </resources>
