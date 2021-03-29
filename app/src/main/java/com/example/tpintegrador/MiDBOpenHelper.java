@@ -15,8 +15,9 @@ public class MiDBOpenHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {}
-
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE INMUEBLE (_id integer primary key autoincrement, codigo integer, nombre text, descripcion text, precio integer)");
+    }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
 }

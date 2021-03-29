@@ -7,11 +7,12 @@
         android:orientation="vertical"
         tools:context=".FormEditarAlojamientoActivity">
 
-        <EditText
-            android:id="@+id/txtNombre"
-            android:hint="Nombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></EditText>
+    <EditText
+        android:id="@+id/txtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        android:inputType="text"></EditText>
         <EditText
             android:id="@+id/txtDescripcion"
             android:hint="Descripcion"
@@ -21,17 +22,20 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></EditText>
-        <EditText
-            android:id="@+id/precio"
-            android:hint="Precio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></EditText>
+
+    <EditText
+        android:id="@+id/precio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Precio"
+        android:inputType="number"></EditText>
         <CheckBox
             android:id="@+id/poseeInternet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint=" Posee internet"></CheckBox>
         <Switch
+            android:id="@+id/swMascotas"
             android:text="Permite mascotas?"
             android:textOff="NO Permite mascotas"
             android:textOn="SI Permite mascotas"
@@ -39,6 +43,7 @@
             android:layout_height="wrap_content"></Switch>
         <Spinner
             android:id="@+id/cmbTipoPropiedad"
+            android:spinnerMode="dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></Spinner>
         <EditText

@@ -126,6 +126,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // primero verifico que abrimos el mapa para buscar coordenadas
                 Log.d("MAPAS"," onMapLongClick: "+ buscarCoordenadas);
 
+
                 if(buscarCoordenadas){
                     // capturar la coordenada actual
                     // enviar el resultado a la actividad de buscar para que sepa las coordenadas seleccionadas
@@ -134,6 +135,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     returnIntent.putExtra("longitud",0.0f);
 
                     setResult(MapsActivity.RESULT_OK,returnIntent);
+                    Toast.makeText(MapsActivity.this, "Coordenadas Capturadas", Toast.LENGTH_LONG).show();
 
                     finish();
                 }
