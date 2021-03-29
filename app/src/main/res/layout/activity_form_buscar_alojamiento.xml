@@ -10,11 +10,30 @@
         android:text="BUSCAR PROPIEDADES"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></TextView>
+    <EditText
+        android:id="@+id/txtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        android:inputType="text"></EditText>
+    <EditText
+        android:id="@+id/precio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Precio"
+        android:inputType="number"></EditText>
+    <Switch
+        android:id="@+id/swMascotas"
+        android:text="Permite mascotas?"
+        android:textOff="NO Permite mascotas"
+        android:textOn="SI Permite mascotas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Switch>
 
         <Button
-            android:id="@+id/btnBuscarCoordenadas"
-            android:text="Buscar Coordenadas"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"></Button>
+            android:id="@+id/btnBuscar"
+            android:text="Buscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Button>
 
 </LinearLayout>

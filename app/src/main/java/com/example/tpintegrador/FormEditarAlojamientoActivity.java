@@ -2,7 +2,9 @@ package com.example.tpintegrador;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -56,6 +58,8 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
         ArrayAdapter<TipoAlojamiento> tipoAlojamiento = new ArrayAdapter<TipoAlojamiento>(this,android.R.layout.simple_spinner_dropdown_item,listarTipo());
         spTipoAloj.setAdapter(tipoAlojamiento);
 
+       // int permiso = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+
 
         botonBuscarCoordenadas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,14 +76,14 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
             public void onClick(View v) {
                // Propiedad miPropiedad = new Propiedad();
                     if (txtNombre.length()>5) {
-                        miPropiedad.setNombre(txtNombre.toString());
+                        miPropiedad.setNombre(txtNombre.getText().toString());
                     }
                     else{
                         txtNombre.requestFocus();
-                           // Toast.makeText(this, "Nombre Incorrecto", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FormEditarAlojamientoActivity.this, "Nombre Incorrecto", Toast.LENGTH_SHORT).show();
                     }
-                miPropiedad.setNombre(txtDescripcion.toString());
-                miPropiedad.setPrecioDia(Double.valueOf(txtprecio.toString()));
+                miPropiedad.setNombre(txtDescripcion.getText().toString());
+                miPropiedad.setPrecioDia(Double.valueOf(txtprecio.getText().toString()));
 
                 poseeInternet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -110,7 +114,7 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
                    }
                });
 
-                miPropiedad.setCapacidadPersonas(Integer.valueOf(txtcapacidad.toString()));
+                miPropiedad.setCapacidadPersonas(Integer.valueOf(txtcapacidad.getText().toString()));
 
 
                 AsyncTaskGuardarAlojamiento tarea = new AsyncTaskGuardarAlojamiento();

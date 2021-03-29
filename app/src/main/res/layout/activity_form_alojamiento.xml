@@ -13,15 +13,15 @@
         android:layout_height="wrap_content"
         android:hint="Nombre"
         android:inputType="text"></EditText>
-        <EditText
-            android:id="@+id/txtDescripcion"
-            android:hint="Descripcion"
-            android:inputType="textMultiLine"
-            android:lines="3"
-            android:maxLines="4"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></EditText>
+    <EditText
+        android:id="@+id/txtDescripcion"
+        android:hint="Descripcion"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:maxLines="4"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></EditText>
 
     <EditText
         android:id="@+id/precio"
