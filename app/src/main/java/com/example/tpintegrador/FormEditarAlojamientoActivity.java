@@ -8,6 +8,7 @@ import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.icu.text.MessagePattern;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -55,10 +56,9 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
         //TipoAlojamiento tipo = new TipoAlojamiento();
         miPropiedad = new Propiedad();
 
-        ArrayAdapter<TipoAlojamiento> tipoAlojamiento = new ArrayAdapter<TipoAlojamiento>(this,android.R.layout.simple_spinner_dropdown_item,listarTipo());
+        ArrayAdapter<TipoAlojamiento> tipoAlojamiento = new ArrayAdapter<TipoAlojamiento>(this,android.R.layout.simple_spinner_dropdown_item,ListarTipo());
         spTipoAloj.setAdapter(tipoAlojamiento);
 
-       // int permiso = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
 
 
         botonBuscarCoordenadas.setOnClickListener(new View.OnClickListener() {
@@ -75,50 +75,49 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                // Propiedad miPropiedad = new Propiedad();
-                    if (txtNombre.length()>5) {
+                    if (txtNombre.length()>5)
                         miPropiedad.setNombre(txtNombre.getText().toString());
-                    }
+
                     else{
                         txtNombre.requestFocus();
                         Toast.makeText(FormEditarAlojamientoActivity.this, "Nombre Incorrecto", Toast.LENGTH_SHORT).show();
                     }
-                miPropiedad.setNombre(txtDescripcion.getText().toString());
+                miPropiedad.setDescripcion(txtDescripcion.getText().toString());
                 miPropiedad.setPrecioDia(Double.valueOf(txtprecio.getText().toString()));
+
 
                 poseeInternet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        miPropiedad.setPoseeInternet(poseeInternet.isChecked());
-                    }
-                });
+                        miPropiedad.setPoseeInternet(isChecked); } });
 
 
                 swMascotas.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
 
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                miPropiedad.setPermiteMascotas(swMascotas.isChecked()); }
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        miPropiedad.setPermiteMascotas(isChecked); } });
 
 
-                });
 
                spTipoAloj.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                    @Override
                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                       TipoAlojamiento elejido = tipoAlojamiento.getItem(position);
-                       miPropiedad.setDescripcion(elejido.getTipo());
+                        String tiposelec = tipoAlojamiento.getItem(position).toString();
+                      miPropiedad.setTipoPropiedad(tiposelec);
                    }
 
                    @Override
-                   public void onNothingSelected(AdapterView<?> parent) {
+                  public void onNothingSelected(AdapterView<?> parent) {
 
                    }
                });
 
-                miPropiedad.setCapacidadPersonas(Integer.valueOf(txtcapacidad.getText().toString()));
+               miPropiedad.setCapacidadPersonas(Integer.valueOf(txtcapacidad.getText().toString()));
 
 
                 AsyncTaskGuardarAlojamiento tarea = new AsyncTaskGuardarAlojamiento();
                 tarea.execute(miPropiedad);
+
 
 
             }
@@ -141,21 +140,32 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
 
         @Override
         protected Long doInBackground(Propiedad... propiedad) {
+
+
             SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
             ContentValues fila = new ContentValues();
 
-            fila.put("Nombre", miPropiedad.getNombre());
-            fila.put("Descripcion", miPropiedad.getDescripcion());
-            fila.put("Precio", miPropiedad.getPrecioDia());
-            fila.put("Internet", miPropiedad.getPoseeInternet());
-            fila.put("Mascotas", miPropiedad.getPermiteMascotas());
-            fila.put("Internet", miPropiedad.getPoseeInternet());
-            fila.put("Personas", miPropiedad.getCapacidadPersonas());
+            String dbnombre = miPropiedad.getNombre();
+            String dbdescripcion = miPropiedad.getDescripcion();
+            Double dbpprecio = miPropiedad.getPrecioDia();
+            Boolean dbposeeInternet = miPropiedad.getPoseeInternet();
+            Boolean dbpermiteMascotas = miPropiedad.getPermiteMascotas();
+            String dbtipo = miPropiedad.getTipoPropiedad();
+            Integer dbcapacidad = miPropiedad.getCapacidadPersonas();
+            long dblatitud = miPropiedad.getLatitud();
+            long dblongitud = miPropiedad.getLongitud();
 
-            db.insert("alojamientoDB" , "nombre", fila);
+            fila.put("nombre", dbnombre);
+            fila.put("descripcion", dbdescripcion);
+            fila.put("precio", dbpprecio);
+            fila.put("internet", dbposeeInternet);
+            fila.put("mascotas", dbpermiteMascotas);
+            fila.put("tipo", dbtipo);
+            fila.put("personas", dbcapacidad);
+            fila.put("latitud", dblatitud);
+            fila.put("longitud", dblongitud);
 
-
-
+            db.insert("TABLA" , "nombre", fila);
 
             // ejecutar el insert
             return null;
@@ -177,7 +187,7 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
     }
 
 
-    public List<TipoAlojamiento> listarTipo(){
+    public List<TipoAlojamiento> ListarTipo(){
         List<TipoAlojamiento> listaTipo = new ArrayList<>();
 
 

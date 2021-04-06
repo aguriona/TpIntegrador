@@ -128,6 +128,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                 if(buscarCoordenadas){
+                    LatLng Coordenadas = new LatLng(0.0 , 0.0);
                     // capturar la coordenada actual
                     // enviar el resultado a la actividad de buscar para que sepa las coordenadas seleccionadas
                     Intent returnIntent = new Intent();

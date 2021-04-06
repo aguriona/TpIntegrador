@@ -11,10 +11,19 @@ public class Propiedad {
     private Double precioDia;
     private Boolean poseeInternet;
     private Boolean permiteMascotas;
-    private TipoAlojamiento tipoPropiedad;
+    //private TipoAlojamiento tipoPropiedad;
+    private String tipoPropiedad;
     private Integer capacidadPersonas;
     private long latitud;
     private long longitud;
+
+    public void setTipoPropiedad(String tipoPropiedad) {
+        this.tipoPropiedad = tipoPropiedad;
+    }
+
+    public String getTipoPropiedad() {
+        return tipoPropiedad;
+    }
 
     public Boolean getPermiteMascotas() {
         return permiteMascotas;
@@ -25,16 +34,19 @@ public class Propiedad {
     }
 
     public Propiedad() {
+
+
     }
 
 
-    public Propiedad(Integer id, String nombre, String descripcion, Double precioDia, Boolean poseeInternet, Boolean permiteMascotas, TipoAlojamiento tipoPropiedad, Integer capacidadPersonas, long latitud, long longitud) {
+    public Propiedad(Integer id, String nombre, String descripcion, Double precioDia, Boolean poseeInternet, Boolean permiteMascotas, String tipoPropiedad, Integer capacidadPersonas, long latitud, long longitud) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precioDia = precioDia;
         this.poseeInternet = poseeInternet;
         this.permiteMascotas = permiteMascotas;
+        //this.tipoPropiedad = tipoPropiedad;
         this.tipoPropiedad = tipoPropiedad;
         this.capacidadPersonas = capacidadPersonas;
         this.latitud = latitud;
@@ -81,13 +93,13 @@ public class Propiedad {
         this.poseeInternet = poseeInternet;
     }
 
-    public TipoAlojamiento getTipoPropiedad() {
-        return tipoPropiedad;
-    }
+   // public TipoAlojamiento getTipoPropiedad() {
+    //    return tipoPropiedad;
+   // }
 
-    public void setTipoPropiedad(TipoAlojamiento tipoPropiedad) {
-        this.tipoPropiedad = tipoPropiedad;
-    }
+   // public void setTipoPropiedad(TipoAlojamiento tipoPropiedad) {
+    //    this.tipoPropiedad = tipoPropiedad;
+    //}
 
     public Integer getCapacidadPersonas() {
         return capacidadPersonas;
