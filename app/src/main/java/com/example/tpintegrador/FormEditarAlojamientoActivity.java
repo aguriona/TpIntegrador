@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.icu.text.MessagePattern;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,6 +39,10 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
     Spinner spTipoAloj;
     MiDBOpenHelper dbOpenHelper;
     Propiedad miPropiedad;
+    String tiposelec;
+    boolean internet = false;
+    boolean mascotas = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,75 +61,66 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
         //TipoAlojamiento tipo = new TipoAlojamiento();
         miPropiedad = new Propiedad();
 
+
         ArrayAdapter<TipoAlojamiento> tipoAlojamiento = new ArrayAdapter<TipoAlojamiento>(this,android.R.layout.simple_spinner_dropdown_item,ListarTipo());
         spTipoAloj.setAdapter(tipoAlojamiento);
 
+        poseeInternet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                internet = isChecked; } });
+
+        swMascotas.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mascotas = isChecked;
+                Log.d("APPtp", "onClick: "+ isChecked);
+                 } });
 
 
+        spTipoAloj.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                tiposelec = tipoAlojamiento.getItem(position).toString();
+                Log.d("APPtp", "onClick: "+ tiposelec);}
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            } });
+
+
+        botonGuardar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                    if (txtNombre.length()>5)
+                        miPropiedad.setNombre(txtNombre.getText().toString());
+                    else{
+                        txtNombre.requestFocus();
+                        Toast.makeText(FormEditarAlojamientoActivity.this, "Nombre Incorrecto", Toast.LENGTH_SHORT).show();}
+
+                miPropiedad.setDescripcion(txtDescripcion.getText().toString());
+                miPropiedad.setPrecioDia(Double.valueOf(txtprecio.getText().toString()));
+                miPropiedad.setPoseeInternet(internet);
+                miPropiedad.setPermiteMascotas(mascotas);
+                miPropiedad.setTipoPropiedad(tiposelec);
+                miPropiedad.setCapacidadPersonas(Integer.valueOf(txtcapacidad.getText().toString()));
+
+
+                AsyncTaskGuardarAlojamiento tarea = new AsyncTaskGuardarAlojamiento();
+                tarea.execute(miPropiedad);
+            }
+        });
         botonBuscarCoordenadas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(FormEditarAlojamientoActivity.this,MapsActivity.class);
                 i.setAction(MainActivity.ACCION_BUSCAR_COORDENADAS);
                 startActivityForResult(i,MainActivity.REQUEST_CODE_BUSCAR_MAPA);
-            }
-        });
-
-        botonGuardar.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-               // Propiedad miPropiedad = new Propiedad();
-                    if (txtNombre.length()>5)
-                        miPropiedad.setNombre(txtNombre.getText().toString());
-
-                    else{
-                        txtNombre.requestFocus();
-                        Toast.makeText(FormEditarAlojamientoActivity.this, "Nombre Incorrecto", Toast.LENGTH_SHORT).show();
-                    }
-                miPropiedad.setDescripcion(txtDescripcion.getText().toString());
-                miPropiedad.setPrecioDia(Double.valueOf(txtprecio.getText().toString()));
-
-
-                poseeInternet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        miPropiedad.setPoseeInternet(isChecked); } });
-
-
-                swMascotas.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        miPropiedad.setPermiteMascotas(isChecked); } });
-
-
-
-               spTipoAloj.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                   @Override
-                   public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        String tiposelec = tipoAlojamiento.getItem(position).toString();
-                      miPropiedad.setTipoPropiedad(tiposelec);
-                   }
-
-                   @Override
-                  public void onNothingSelected(AdapterView<?> parent) {
-
-                   }
-               });
-
-               miPropiedad.setCapacidadPersonas(Integer.valueOf(txtcapacidad.getText().toString()));
-
-
-                AsyncTaskGuardarAlojamiento tarea = new AsyncTaskGuardarAlojamiento();
-                tarea.execute(miPropiedad);
-
-
-
-            }
-
-            });
-        }
-
+            } });
+     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
