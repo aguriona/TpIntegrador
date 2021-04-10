@@ -3,6 +3,9 @@ package com.example.tpintegrador.modelo;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Propiedad {
 
     private Integer id;
@@ -16,6 +19,22 @@ public class Propiedad {
     private Integer capacidadPersonas;
     private long latitud;
     private long longitud;
+
+    @Override
+    public String toString() {
+        return "Propiedad{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", precioDia=" + precioDia +
+                ", poseeInternet=" + poseeInternet +
+                ", permiteMascotas=" + permiteMascotas +
+                ", tipoPropiedad='" + tipoPropiedad + '\'' +
+                ", capacidadPersonas=" + capacidadPersonas +
+                ", latitud=" + latitud +
+                ", longitud=" + longitud +
+                '}';
+    }
 
     public void setTipoPropiedad(String tipoPropiedad) {
         this.tipoPropiedad = tipoPropiedad;
@@ -39,7 +58,7 @@ public class Propiedad {
     }
 
 
-    public Propiedad(Integer id, String nombre, String descripcion, Double precioDia, Boolean poseeInternet, Boolean permiteMascotas, String tipoPropiedad, Integer capacidadPersonas, long latitud, long longitud) {
+    public Propiedad(Integer id, String nombre, String string, double aDouble) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -93,6 +112,8 @@ public class Propiedad {
         this.poseeInternet = poseeInternet;
     }
 
+
+
    // public TipoAlojamiento getTipoPropiedad() {
     //    return tipoPropiedad;
    // }
@@ -124,4 +145,9 @@ public class Propiedad {
     public void setLongitud(long longitud) {
         this.longitud = longitud;
     }
+
+
+
+
+
 }

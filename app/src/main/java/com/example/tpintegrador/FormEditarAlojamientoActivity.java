@@ -48,6 +48,7 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_alojamiento);
+
         botonBuscarCoordenadas = findViewById(R.id.btnBuscarCoordenadas);
         botonGuardar = findViewById(R.id.btnGuardarAlojamiento);
         dbOpenHelper = new MiDBOpenHelper(FormEditarAlojamientoActivity.this);
@@ -74,7 +75,7 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mascotas = isChecked;
-                Log.d("APPtp", "onClick: "+ isChecked);
+                Log.d("APPtp", "onClick: "+ mascotas);
                  } });
 
 
@@ -111,7 +112,9 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
 
                 AsyncTaskGuardarAlojamiento tarea = new AsyncTaskGuardarAlojamiento();
                 tarea.execute(miPropiedad);
+
             }
+
         });
         botonBuscarCoordenadas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +153,8 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
             Integer dbcapacidad = miPropiedad.getCapacidadPersonas();
             long dblatitud = miPropiedad.getLatitud();
             long dblongitud = miPropiedad.getLongitud();
+
+            Log.d("APPtp", "en bd: "+ dbpermiteMascotas);
 
             fila.put("nombre", dbnombre);
             fila.put("descripcion", dbdescripcion);

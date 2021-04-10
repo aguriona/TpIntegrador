@@ -14,21 +14,22 @@
         card_view:cardBackgroundColor="@color/fondoCard"
         card_view:cardCornerRadius="15dp"
         card_view:cardElevation="5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:layout_height="184dp"
+            android:orientation="horizontal">
+
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/rowNombrePropiedad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+
+            <Button
+                android:id="@+id/rowBtnReservar"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rowNombrePropiedad"></TextView>
-                <Button
-                    android:id="@+id/rowBtnReservar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Reservar >">
-                </Button>
+                android:text="Reservar >"></Button>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
