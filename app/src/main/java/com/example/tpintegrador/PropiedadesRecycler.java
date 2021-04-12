@@ -1,10 +1,14 @@
 package com.example.tpintegrador;
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -30,12 +34,13 @@ public class PropiedadesRecycler extends RecyclerView.Adapter<PropiedadesRecycle
     public class PropiedadViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         CardView card;
-        TextView titulo;
+        TextView titulo, idfila;
         Button btnReservar;
 
         public PropiedadViewHolder(View v){
             super(v);
             card = v.findViewById(R.id.cardSerie);
+            idfila = v.findViewById(R.id.idfila);
             titulo = v.findViewById(R.id.rowNombrePropiedad);
             btnReservar = v.findViewById(R.id.rowBtnReservar);
 
@@ -43,6 +48,21 @@ public class PropiedadesRecycler extends RecyclerView.Adapter<PropiedadesRecycle
                 @Override
                 public void onClick(View v) {
                     /// mandar un mensaje para resrevar
+                    Intent i = new Intent();
+
+                    i.putExtra("data1","ALQUILADA");
+
+                    i.setAction(MyReciver.EVENTO_01);
+                    activity.sendBroadcast(i);
+
+
+
+
+
+
+
+
+
 
                 }
             });
@@ -66,6 +86,17 @@ public class PropiedadesRecycler extends RecyclerView.Adapter<PropiedadesRecycle
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(PropiedadViewHolder serieHolder, final int position) {
+        Propiedad prop = mDataset.get(position);
+        Log.d("H01", "Holder position: "+ position);
+        Log.d("H01", "Dataset: "+ mDataset.get(position));
+        Log.d("H01", "propid: "+ prop.getId());
+
+        serieHolder.idfila.setText(prop.getId().toString());
+        Log.d("H01", "gettext: "+ serieHolder.idfila.getText());
+        //serieHolder.idfila.setTag(position);
+
+     //   serieHolder.titulo.setTag(position);
+        serieHolder.btnReservar.setTag(position);
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         // configurar cada view con que fila del arreglo de datos coincide.

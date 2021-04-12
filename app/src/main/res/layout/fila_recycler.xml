@@ -18,18 +18,33 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="184dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/idfila"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:visibility="visible"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/rowNombrePropiedad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
-
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""/>
             <Button
                 android:id="@+id/rowBtnReservar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Reservar >"></Button>
+                android:text="Reservar >"
+                android:layout_gravity="bottom">
+
+            </Button>
+
+
+
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

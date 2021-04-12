@@ -32,7 +32,8 @@ public class FormBuscarAlojamientoActivity extends AppCompatActivity {
     MiDBOpenHelper dbOpenHelper;
     boolean mascotas = false;
 
-    public Propiedad listaPropiedades= new Propiedad();
+    public Propiedad listaPropiedad= new Propiedad();
+
 
 
 
@@ -80,21 +81,23 @@ public class FormBuscarAlojamientoActivity extends AppCompatActivity {
 
 
                 while (resultado.moveToNext()) {
-                    listaPropiedades.setId(resultado.getInt(0));
-                    listaPropiedades.setNombre(resultado.getString(1));
-                    listaPropiedades.setDescripcion(resultado.getString(2));
-                    listaPropiedades.setPrecioDia(resultado.getDouble(3));
-                    listaPropiedades.setPoseeInternet(Boolean.valueOf(resultado.getString(4)));
-                    listaPropiedades.setPermiteMascotas(Boolean.valueOf(resultado.getString(5)));
-                    listaPropiedades.setTipoPropiedad(resultado.getString(6));
-                    listaPropiedades.setCapacidadPersonas(resultado.getInt(7));
-                Log.d("BA01", "ID: "+ listaPropiedades.getId());
-                Log.d("BA01", "Nombre: "+ listaPropiedades.getNombre());
-
-
+                    listaPropiedad.setId(resultado.getInt(0));
+                    listaPropiedad.setNombre(resultado.getString(1));
+                    listaPropiedad.setDescripcion(resultado.getString(2));
+                    listaPropiedad.setPrecioDia(resultado.getDouble(3));
+                    listaPropiedad.setPoseeInternet(Boolean.valueOf(resultado.getString(4)));
+                    listaPropiedad.setPermiteMascotas(Boolean.valueOf(resultado.getString(5)));
+                    listaPropiedad.setTipoPropiedad(resultado.getString(6));
+                    listaPropiedad.setCapacidadPersonas(resultado.getInt(7));
+                    Log.d("BA01", "ID: "+ listaPropiedad.getId());
+                    Log.d("BA01", "Nombre: "+ listaPropiedad.getNombre());
 
 
                 }
+                Intent i1 = new Intent(FormBuscarAlojamientoActivity.this,ListaAlojamientoActivity.class);
+                i1.putExtra("id",listaPropiedad.getId());
+                startActivity(i1);
+
             } });
 
 
