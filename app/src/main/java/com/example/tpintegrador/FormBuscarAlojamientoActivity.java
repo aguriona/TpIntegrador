@@ -59,7 +59,7 @@ public class FormBuscarAlojamientoActivity extends AppCompatActivity {
 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mascotas = isChecked;
-                Log.d("BA01", "onClick: "+ mascotas);
+               // Log.d("BA01", "onClick: "+ mascotas);
             } });
 
 
@@ -91,11 +91,17 @@ public class FormBuscarAlojamientoActivity extends AppCompatActivity {
                     listaPropiedad.setCapacidadPersonas(resultado.getInt(7));
                     Log.d("BA01", "ID: "+ listaPropiedad.getId());
                     Log.d("BA01", "Nombre: "+ listaPropiedad.getNombre());
-
-
+                    Log.d("BA01", "Precio: "+ listaPropiedad.getPrecioDia());
+                    Log.d("BA01", "Mascotas: "+ listaPropiedad.getPermiteMascotas());
                 }
+
                 Intent i1 = new Intent(FormBuscarAlojamientoActivity.this,ListaAlojamientoActivity.class);
                 i1.putExtra("id",listaPropiedad.getId());
+                i1.putExtra("nombre",listaPropiedad.getNombre());
+                i1.putExtra("precio",listaPropiedad.getPrecioDia());
+                i1.putExtra("mascotas",listaPropiedad.getPermiteMascotas());
+                i1.putExtra("latitud",listaPropiedad.getLatitud());
+                i1.putExtra("longitud",listaPropiedad.getLongitud());
                 startActivity(i1);
 
             } });

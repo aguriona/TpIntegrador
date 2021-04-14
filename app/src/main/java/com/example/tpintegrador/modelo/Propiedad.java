@@ -17,8 +17,8 @@ public class Propiedad {
     //private TipoAlojamiento tipoPropiedad;
     private String tipoPropiedad;
     private Integer capacidadPersonas;
-    private long latitud;
-    private long longitud;
+    private double latitud;
+    private double longitud;
 
     @Override
     public String toString() {
@@ -130,19 +130,19 @@ public class Propiedad {
         this.capacidadPersonas = capacidadPersonas;
     }
 
-    public long getLatitud() {
+    public double getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(long latitud) {
+    public void setLatitud(double latitud) {
         this.latitud = latitud;
     }
 
-    public long getLongitud() {
+    public double getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(long longitud) {
+    public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
 

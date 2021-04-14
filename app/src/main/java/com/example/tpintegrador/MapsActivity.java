@@ -21,13 +21,17 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private Boolean buscarCoordenadas;
+    public static final Integer RESULT_OK = 5000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,8 +121,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @SuppressLint("MissingPermission")
     private void configurarMapa(){
         Log.d("MAPAS"," configurarMapa");
-
+        LatLng miLugar = new LatLng(-31,-60 );
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(miLugar));
+        mMap.animateCamera(CameraUpdateFactory.zoomIn());
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.setMyLocationEnabled(true);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setCompassEnabled(true);
+
+        //CameraPosition cp = new CameraPosition.Builder().zoom(15).tilt(15).build();
+        //mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cp), 5000,null);
+
 
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
@@ -126,16 +139,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // primero verifico que abrimos el mapa para buscar coordenadas
                 Log.d("MAPAS"," onMapLongClick: "+ buscarCoordenadas);
 
-
                 if(buscarCoordenadas){
-                    LatLng Coordenadas = new LatLng(0.0 , 0.0);
+
+                    mMap.addMarker(new MarkerOptions().position(latLng).visible(true));
                     // capturar la coordenada actual
                     // enviar el resultado a la actividad de buscar para que sepa las coordenadas seleccionadas
                     Intent returnIntent = new Intent();
-                    returnIntent.putExtra("latitud",0.0f);
-                    returnIntent.putExtra("longitud",0.0f);
+
+                    double lati = latLng.latitude;
+                    double lomg = latLng.longitude;
+
+                    returnIntent.putExtra("latitud",lati);
+                    returnIntent.putExtra("longitud",lomg);
+                    Log.d("MAPAS"," latlong: "+ latLng);
 
                     setResult(MapsActivity.RESULT_OK,returnIntent);
+
                     Toast.makeText(MapsActivity.this, "Coordenadas Capturadas", Toast.LENGTH_LONG).show();
 
                     finish();

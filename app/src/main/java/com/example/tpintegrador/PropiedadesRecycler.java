@@ -34,14 +34,16 @@ public class PropiedadesRecycler extends RecyclerView.Adapter<PropiedadesRecycle
     public class PropiedadViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         CardView card;
-        TextView titulo, idfila;
+        TextView idfila,rowNombre,rowPrecio,rowMascotas;
         Button btnReservar;
 
         public PropiedadViewHolder(View v){
             super(v);
             card = v.findViewById(R.id.cardSerie);
             idfila = v.findViewById(R.id.idfila);
-            titulo = v.findViewById(R.id.rowNombrePropiedad);
+            rowNombre = v.findViewById(R.id.rowNombrePropiedad);
+            rowPrecio = v.findViewById(R.id.rowPrecio);
+            rowMascotas = v.findViewById(R.id.rowMascotas);
             btnReservar = v.findViewById(R.id.rowBtnReservar);
 
             btnReservar.setOnClickListener(new View.OnClickListener() {
@@ -54,17 +56,7 @@ public class PropiedadesRecycler extends RecyclerView.Adapter<PropiedadesRecycle
 
                     i.setAction(MyReciver.EVENTO_01);
                     activity.sendBroadcast(i);
-
-
-
-
-
-
-
-
-
-
-                }
+                 }
             });
         }
     }
@@ -91,8 +83,14 @@ public class PropiedadesRecycler extends RecyclerView.Adapter<PropiedadesRecycle
         Log.d("H01", "Dataset: "+ mDataset.get(position));
         Log.d("H01", "propid: "+ prop.getId());
 
-        serieHolder.idfila.setText(prop.getId().toString());
-        Log.d("H01", "gettext: "+ serieHolder.idfila.getText());
+        serieHolder.idfila.setText(String.valueOf(prop.getId()));
+        serieHolder.rowNombre.setText(prop.getNombre());
+        serieHolder.rowPrecio.setText(String.valueOf(prop.getPrecioDia()));
+        serieHolder.rowMascotas.setText(String.valueOf(prop.getPermiteMascotas()));
+
+        Log.d("H01", "Holder ID: "+ serieHolder.idfila.getText());
+        Log.d("H01", "Holder Nombre: "+ serieHolder.rowNombre.getText());
+        Log.d("H01", "Holder Precio: "+ serieHolder.rowPrecio.getText());
         //serieHolder.idfila.setTag(position);
 
      //   serieHolder.titulo.setTag(position);

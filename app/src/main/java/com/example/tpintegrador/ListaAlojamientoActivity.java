@@ -28,15 +28,26 @@ public class ListaAlojamientoActivity extends AppCompatActivity {
         BroadcastReceiver br = new MyReciver();
        // IntentFilter filtro = new IntentFilter();
         //filtro.addAction(MyReciver.EVENTO_01);
-        getApplication().getApplicationContext()
-                .registerReceiver(br,null);
-        
+       // getApplication().getApplicationContext()
+       //         .registerReceiver(br,null);
+
 
 
         if(extraParams!=null){
             listaPropiedad.setId(extraParams.getInt("id",999));
-            Log.d("L01", "extraparam: "+ extraParams.getInt("id"));
+            listaPropiedad.setNombre(extraParams.getString("nombre","Sin Nombre"));
+            listaPropiedad.setPrecioDia(extraParams.getDouble("precio",0));
+            listaPropiedad.setPermiteMascotas(extraParams.getBoolean("mascotas",false));
+
+            Log.d("L01", "extraparam id: "+ extraParams.getInt("id"));
+            Log.d("L01", "extraparam nombre: "+ extraParams.getString("nombre"));
+            Log.d("L01", "extraparam precio: "+ extraParams.getDouble("precio"));
+            Log.d("L01", "extraparam mascotas: "+ extraParams.getBoolean("mascotas"));
+
             Log.d("L01", "listapropiedadID: "+ listaPropiedad.getId());
+            Log.d("L01", "listapropiedad Nombre: "+ listaPropiedad.getNombre());
+            Log.d("L01", "listapropiedad Precio: "+ listaPropiedad.getPrecioDia());
+            Log.d("L01", "listapropiedad Mascotas: "+ listaPropiedad.getPermiteMascotas());
         }
         else{Log.d("L01", "SIN extras ");}
 
@@ -53,7 +64,8 @@ public class ListaAlojamientoActivity extends AppCompatActivity {
         List<Propiedad> listaPropiedades = new ArrayList<>();
 
         listaPropiedades.add(listaPropiedad);
-        Log.d("L01", "listapropiedades: "+ listaPropiedades.size());
+
+        Log.d("L01", "lista size: "+ listaPropiedades.size());
         Log.d("L01", "listapropiedades: "+ listaPropiedades.get(0));
       //  Log.d("BA01", "nombre en listapropiedad: "+ listaPropiedad.getNombre());
         // specify an adapter (see also next example)

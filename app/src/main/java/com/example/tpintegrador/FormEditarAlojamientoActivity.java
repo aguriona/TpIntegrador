@@ -128,12 +128,21 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==RESULT_OK){
+        Log.d("MAPAS", "RESULTOK: "+ MapsActivity.RESULT_OK);
+        Log.d("MAPAS", "REQUEST: "+ MainActivity.REQUEST_CODE_BUSCAR_MAPA);
+        if(resultCode==MapsActivity.RESULT_OK){
             if(requestCode==MainActivity.REQUEST_CODE_BUSCAR_MAPA) {
-                // setear las coordenadas
+                double extraLat= data.getExtras().getDouble("latitud", 50);
+                miPropiedad.setLatitud(extraLat);
+                double extraLong= data.getExtras().getDouble("longitud", 50);
+                miPropiedad.setLongitud(extraLong);
+                }
             }
-        }
+
+
+        Log.d("MAPAS", "Coordenadas Lat seteada: "+ miPropiedad.getLatitud());
     }
+
 
     public class AsyncTaskGuardarAlojamiento extends AsyncTask<Propiedad, Integer, Long> {
 
@@ -151,8 +160,8 @@ public class FormEditarAlojamientoActivity extends AppCompatActivity {
             Boolean dbpermiteMascotas = miPropiedad.getPermiteMascotas();
             String dbtipo = miPropiedad.getTipoPropiedad();
             Integer dbcapacidad = miPropiedad.getCapacidadPersonas();
-            long dblatitud = miPropiedad.getLatitud();
-            long dblongitud = miPropiedad.getLongitud();
+            double dblatitud = miPropiedad.getLatitud();
+            double dblongitud = miPropiedad.getLongitud();
 
             Log.d("APPtp", "en bd: "+ dbpermiteMascotas);
 
