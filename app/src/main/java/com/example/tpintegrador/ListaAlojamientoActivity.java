@@ -29,9 +29,7 @@ public class ListaAlojamientoActivity extends AppCompatActivity {
        // IntentFilter filtro = new IntentFilter();
         //filtro.addAction(MyReciver.EVENTO_01);
        // getApplication().getApplicationContext()
-       //         .registerReceiver(br,null);
-
-
+       //         PROBANDO BROADCAST
 
         if(extraParams!=null){
             listaPropiedad.setId(extraParams.getInt("id",999));
@@ -71,5 +69,7 @@ public class ListaAlojamientoActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         mAdapter = new PropiedadesRecycler(listaPropiedades,this);
         recyclerView.setAdapter(mAdapter);
+
+
     }
 }

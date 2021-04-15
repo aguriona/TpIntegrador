@@ -1,5 +1,6 @@
 package com.example.tpintegrador;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tpintegrador.modelo.Propiedad;
@@ -22,6 +24,8 @@ import java.util.List;
 public class PropiedadesRecycler extends RecyclerView.Adapter<PropiedadesRecycler.PropiedadViewHolder> {
     private List<Propiedad> mDataset;
     private AppCompatActivity activity;
+
+
     // Provide a suitable constructor (depends on the kind of dataset)
     public PropiedadesRecycler(List<Propiedad> myDataset, AppCompatActivity act) {
         mDataset = myDataset;
@@ -50,12 +54,16 @@ public class PropiedadesRecycler extends RecyclerView.Adapter<PropiedadesRecycle
                 @Override
                 public void onClick(View v) {
                     /// mandar un mensaje para resrevar
+                   // Intent i = new Intent(PropiedadesRecycler.this,MyIntentService.class);
+                    //startService(i);
                     Intent i = new Intent();
-
-                    i.putExtra("data1","ALQUILADA");
-
+                    i.putExtra("data1","INTENT SERVICE");
+                    i.putExtra("data2","TimeStamp: "+System.currentTimeMillis());
                     i.setAction(MyReciver.EVENTO_01);
                     activity.sendBroadcast(i);
+
+
+
                  }
             });
         }
